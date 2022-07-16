@@ -25,41 +25,61 @@ User = get_user_model()
 
 class AuthView(FormView):
     form_class = RegistrationForm
-    template_name = 'users/registration.html'
+    template_name = 'index.html'
 
     def get_success_url(self):
         self.success_url = reverse('users:cpanel')
 
+    def post(self, *args, **kwargs):
+        self.email = self.request.POST.get('email')
+        self.phone = self.request.POST.get('phone')
+        print('post')
+        print('create')
+        user = User.objects.create(username=self.phone, email=self.email)
+        user.save()
+        response = HttpResponse(status=200)
+        return response
+
     def get(self, *args, **kwargs):
+        print('get')
         if self.request.user.is_authenticated:
             return redirect('users:cpanel')
      
         return super().get(*args, **kwargs)
 
     def form_valid(self, form):
-        # self.phone = self.request.POST.get('phone')
         self.email = self.request.POST.get('email')
-        phone = self.request.POST.get('phone')
+        self.phone = self.request.POST.get('phone')
 
-        if User.objects.filter(username=phone, is_password_changed=False).exists():
-            user = User.objects.get(username=phone)
-            user.set_password('dsa!d21dZ')
-            user.save()
+        # if User.objects.filter(username=phone, is_password_changed=False).exists():
+        #     user = User.objects.get(username=phone)
+        #     user.set_password('dsa!d21dZ')
+        #     user.save()
 
-            login(self.request, user)
-            response = HttpResponse(status=200)
-            response.headers['user_exists'] = User.objects.filter(username=phone, is_password_changed=True).exists()
-            response['Location'] = reverse('users:cpanel')
-            return response
+        #     login(self.request, user)
+        #     response = HttpResponse(status=200)
+        #     return response
 
         self.get_context_data(phone=self.phone)
         response = HttpResponse(status=200)
-        response.headers['user_exists'] = User.objects.filter(username=phone,
-                                                              is_password_changed=False).exists()  # Передаем что пользователь существует если пароль не менялся (ранее передавали что существует только если пароль менялся)
-        response['Location'] = reverse('users:cpanel')
         return response
 
 
     def create_user(self, phone, password, **kwargs):
-        user = User.objects.create(username=phone, email=self.email, personal_permission=kwargs.get('user_permission'))
+        print('create')
+        user = User.objects.create(username=phone, email=self.email)
         user.save()
+
+
+
+class Cpanel(FormView):
+    form_class = RegistrationForm
+    template_name = 'index.html'
+
+    def get(self, *args, **kwargs):
+        print('get')
+        if self.request.user.is_authenticated:
+            return redirect('users:cpanel')
+     
+        return super().get(*args, **kwargs)
+

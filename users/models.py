@@ -7,6 +7,7 @@ from datetime import datetime
 
 
 class User(AbstractUser):
+    phone = models.TextField(_('Телефон'),blank=True,default=542)
     email = models.EmailField(_('Почта'),blank=True)
     score = models.IntegerField(_('Рейтинг'),blank=True,default=542)
 
