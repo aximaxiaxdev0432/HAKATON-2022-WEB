@@ -1,0 +1,32 @@
+INFO:django.utils.autoreload:C:\Users\axiax\Desktop\hakaton\users\views.py changed, reloading.
+WARNING:django.request:Not Found: /
+ERROR:django.request:Internal Server Error: /register/
+Traceback (most recent call last):
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 71, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+KeyError: 'site_content'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\views\generic\base.py", line 70, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\views\generic\base.py", line 98, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\axiax\Desktop\hakaton\users\views.py", line 35, in get
+    return redirect('site_content:result')
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 41, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 130, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "C:\Users\axiax\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 82, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'site_content' is not a registered namespace
+INFO:django.utils.autoreload:C:\Users\axiax\Desktop\hakaton\users\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\axiax\Desktop\hakaton\users\forms.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\axiax\Desktop\hakaton\users\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\Users\axiax\Desktop\hakaton\users\views.py changed, reloading.
