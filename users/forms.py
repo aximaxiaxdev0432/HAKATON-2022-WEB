@@ -20,8 +20,7 @@ class BasePhoneForm(forms.Form):
 
 
 class RegistrationForm(BasePhoneForm):
-    phone = forms.CharField(label='', max_length=16,
-    widget=PhoneWidget(attrs={'placeholder': '+380ХХХХХХХХХХ'}))
+    phone = forms.CharField(label='', max_length=16, widget=PhoneWidget(attrs={'placeholder': '+380ХХХХХХХХХХ'}))
     email = forms.CharField(label='', max_length=60)
 
     def clean_phone(self):
